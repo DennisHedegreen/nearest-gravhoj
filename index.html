@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nærmeste gravhøj</title>
+    <meta
+      name="description"
+      content="Find den nærmeste registrerede gravhøj fra din nuværende placering."
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <div class="hero-mark">Hedegreen Research</div>
+
+      <section class="hero">
+        <p class="hero-kicker">På tur?</p>
+        <h1>Nærmeste gravhøj</h1>
+        <p class="hero-copy">
+          Tryk én gang.
+          Brug din placering.
+          Få den nærmeste registrerede gravhøj og en rute derhen.
+        </p>
+
+        <button id="locate-button" type="button">Find nærmeste gravhøj</button>
+        <p id="status" class="status">Klar. Ingen placering brugt endnu.</p>
+      </section>
+
+      <section id="result-card" class="result hidden" aria-live="polite">
+        <p class="result-kicker">Nærmeste registrerede gravhøj</p>
+        <h2 id="result-title">Gravhøj</h2>
+        <p id="result-distance" class="distance"></p>
+        <p id="result-meta" class="meta"></p>
+
+        <p class="access-note">
+          Adgang er ikke garanteret. Nogle gravhøje ligger på privat grund eller
+          kan kun ses fra offentligt tilgængelige områder.
+        </p>
+
+        <div class="actions">
+          <a id="maps-link" href="#" target="_blank" rel="noreferrer">Åbn rute</a>
+          <a id="source-link" href="#" target="_blank" rel="noreferrer">Se officiel kilde</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
