@@ -1,72 +1,61 @@
 # nearest-gravhoj
 
-Working project for a very small archaeology-adjacent public tool.
+Find the nearest registered Danish gravhøj from your current location.
 
-Public idea:
+Live app:
 
-`Show me the nearest gravhøj.`
+- https://dennishedegreen.github.io/nearest-gravhoj/
 
-Not a full archaeology platform.
-Not a heritage portal.
-Not a giant map project.
+Repository:
 
-The point is to keep the first version narrow:
+- https://github.com/DennisHedegreen/nearest-gravhoj
 
-- use current location
-- find the nearest gravhøj / fortidsminde
-- show basic context
-- optionally show route or map
+## What it does
 
-## Why this exists
+This is a very small public tool.
 
-It follows the same pattern that made Danish Politics Data real:
+It does one thing:
 
-- one clear question
-- public data
-- simple interface
-- immediate usefulness
+- uses your browser location
+- finds the nearest registered gravhøj in a local filtered dataset
+- shows basic information
+- hands off to directions and the official source entry
 
-It also carries the first domain-adjacent feedback from outside the politics tool world:
-an archaeologist immediately understood the value of making data readable this way.
+It is not a heritage portal.
+It is not a full archaeology database.
+It is a one-button field tool for people who are simply curious and out on a trip.
 
-## Current status
+## How to use it
 
-Small working v1 now exists:
+1. Open the live app.
+2. Allow location access in the browser.
+3. Press `Find nærmeste gravhøj`.
+4. Open the route or the official source entry.
 
-- `index.html` + `styles.css` + `app.js`
-- local filtered data file in `data/rundhoje.min.json`
-- ingest script in `scripts/fetch_rundhoje.py`
+## Important note
 
-Official data source is viable:
+Nearest does not automatically mean publicly accessible.
 
-- `Fund og Fortidsminder` from Slots- og Kulturstyrelsen / Kulturarv
-- full national download package (`FF.zip`) is about `107.7 MB` zipped
-- official WFS point layer for fredede fortidsminder contains `35,118` point features
-- filtering `anlaegstype = Rundhøj` in the fredede point layer returns `24,520` features
-- the current slim local JSON extract is about `2.46 MB` raw and about `0.40 MB` gzipped
+Some gravhøje are on private land or can only be viewed from public areas.
+The app helps you find the nearest registered site.
+It does not guarantee physical access.
 
-This means v1 does not need the whole dataset live in the app.
-The current build uses a local extract for `Rundhøj` points instead of querying the public WFS on every user lookup.
+## Data source
 
-## Current v1
+The current version uses a local filtered extract from the official Danish
+`Fund og Fortidsminder` dataset from Slots- og Kulturstyrelsen / Kulturarv.
 
-The current app does four things:
+Current v1 slice:
 
-- loads a local filtered Rundhøj dataset
-- asks for current browser location
-- calculates the nearest registered Rundhøj locally
-- shows one nearest result with basic info and route/source links
+- fredede point features
+- filtered to `anlaegstype = Rundhøj`
+- `24,520` entries in the local extract
 
-It also links out to:
+Why a local extract:
 
-- the official Kulturarv source entry
-- Google Maps directions
-
-And it now states one important limit directly in the UI:
-
-- nearest is not the same as publicly accessible
-- some sites may sit on private land or only be viewable from public areas
-- v1 is a one-button nearest-lookup tool, not yet an access-classification tool
+- faster lookup
+- no runtime dependency on the public WFS
+- simpler static deployment
 
 ## Run locally
 
@@ -88,26 +77,15 @@ Then open:
 http://127.0.0.1:8765/
 ```
 
-## Mobile testing
+## Files
 
-For real mobile browser testing, the app should be served over `https`.
+- `index.html` for the public one-page interface
+- `app.js` for the browser-side lookup logic
+- `styles.css` for the visual layer
+- `data/rundhoje.min.json` for the local filtered dataset
+- `scripts/fetch_rundhoje.py` for refreshing the data from the official WFS
 
-That means the practical next step is not more app logic, but publication on:
+## Project note
 
-- GitHub Pages
-- or another simple static `https` host
-
-If GPS is faked on the phone itself, the existing one-button flow should be enough once the app is opened on a proper `https` URL.
-
-## First questions
-
-- Which exact subset should v1 use: only `Rundhøj` in the fredede point layer, or a broader fortidsminde definition?
-- What is the smallest honest scope for v1?
-- Should v1 be mobile-first from the beginning?
-- Is the public name Danish, English, or both?
-- Should the app ship with a local prefiltered file, or refresh periodically from the official WFS?
-- Should v1 keep Google Maps directions, or switch to a more neutral mapping link?
-
-## Rule
-
-Keep it small enough to finish.
+This tool was built inside Hedegreen Research.
+The point was to keep the first version small enough to finish.
