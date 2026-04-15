@@ -41,6 +41,12 @@ function buildSourceUrl(id) {
   return `https://www.kulturarv.dk/fundogfortidsminder/Lokalitet/${id}`;
 }
 
+const ACCESS_LABELS = {
+  always: "Offentlig adgang",
+  daylight: "Adgang i dagtimerne",
+  unknown: "Adgang ikke verificeret",
+};
+
 function renderResult(entry, distanceKm) {
   resultTitle.textContent = "Gravhøj";
   resultDistance.textContent = formatDistance(distanceKm);
@@ -49,6 +55,7 @@ function renderResult(entry, distanceKm) {
   if (entry.dating) metaBits.push(`Dating: ${entry.dating}`);
   if (entry.stednr) metaBits.push(`Stednr: ${entry.stednr}`);
   if (entry.frednr) metaBits.push(`Frednr: ${entry.frednr}`);
+  if (entry.access) metaBits.push(ACCESS_LABELS[entry.access] ?? entry.access);
   resultMeta.textContent = metaBits.join(" · ");
 
   sourceLink.href = buildSourceUrl(entry.id);
