@@ -200,3 +200,77 @@ h2 {
     gap: 0.55rem;
   }
 }
+
+.site-footer {
+  text-align: center;
+  padding: 2rem 0 1.5rem;
+  font-size: 0.75rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+.about-body {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.6rem 2rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-body h2 {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 1rem 0 0.3rem;
+}
+
+.about-body h2:first-child {
+  margin-top: 0;
+}
+
+.about-body p,
+.about-body ul {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.about-body ul {
+  padding-left: 1.2rem;
+}
+
+.about-body li {
+  margin-bottom: 0.3rem;
+}
+
+.about-body a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.about-back {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.4rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
