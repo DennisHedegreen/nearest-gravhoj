@@ -43,40 +43,9 @@ SLIM_PATH = ROOT / "data" / "rundhoje.min.json"
 # Map WFS field values to our three categories.
 # Adjust these if the actual field name or values differ from the WFS.
 # Run fetch_adgang.py and inspect a few features to verify.
-ACCESS_FIELD = "adgangstype"  # likely field name — verify against actual WFS data
-
-ALWAYS_VALUES = {
-    "Offentlig adgang",
-    "Statsskov",
-    "Statsejet naturområde",
-    "Strand",
-    "Hede",
-    "Mose",
-    "Strandeng",
-    "Klit",
-    "Overdrev",
-    "Sø",
-}
-
-DAYLIGHT_VALUES = {
-    "Privat skov",
-    "Skov med dagtimesadgang",
-}
-
-
 def classify(props: dict) -> str:
-    value = props.get(ACCESS_FIELD, "")
-    if value in ALWAYS_VALUES:
-        return "always"
-    if value in DAYLIGHT_VALUES:
-        return "daylight"
-    # Fallback: check any field containing 'adgang' for a hint
-    for k, v in props.items():
-        if v in ALWAYS_VALUES:
-            return "always"
-        if v in DAYLIGHT_VALUES:
-            return "daylight"
-    return "unknown"
+    # access_category is set by fetch_adgang.py during conversion
+    return props.get("access_category", "unknown")
 
 
 def build_spatial_index(adgang_features: list) -> tuple[STRtree, list]:
